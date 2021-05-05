@@ -53,23 +53,29 @@ function spellcheckApi(text) {
 }
 
 const CreateHighlightElem = (inputEl, mistakeText) => {
-  if (inputEl.tagName.toLowerCase() === 'div') {
-    const wholeText = getElementText(inputEl)
-    const r = document.createRange()
-    const startOffset = wholeText.indexOf(mistakeText)
-    const endOffset = startOffset + mistakeText.length
-    r.setStart(inputEl.firstChild, startOffset)
-    r.setEnd(inputEl.firstChild, endOffset)
-    const rect = r.getClientRects()[0]
-    const highlight = document.createElement('div')
-    highlight.style.position = 'fixed'
-    highlight.style.top = `${rect.top + rect.height - 1}px`
-    highlight.style.left = `${rect.left}px`
-    highlight.style.width = `${rect.width}px`
-    highlight.style.height = '3px'
-    highlight.style.zIndex = '1000'
-    highlight.style.background = 'rgba(255, 0, 0, 0.5)'
-    return highlight
+  try {
+    if (inputEl.tagName.toLowerCase() === 'div') {
+      const wholeText = getElementText(inputEl)
+      const r = document.createRange()
+      const startOffset = wholeText.indexOf(mistakeText)
+      const endOffset = startOffset + mistakeText.length
+      r.setStart(inputEl.firstChild, startOffset)
+      r.setEnd(inputEl.firstChild, endOffset)
+      const rect = r.getClientRects()[0]
+      const highlight = document.createElement('div')
+      highlight.style.position = 'fixed'
+      highlight.style.top = `${rect.top + rect.height - 1}px`
+      highlight.style.left = `${rect.left}px`
+      highlight.style.width = `${rect.width}px`
+      highlight.style.height = '3px'
+      highlight.style.zIndex = '1000'
+      highlight.style.background = 'rgba(255, 0, 0, 0.5)'
+      return highlight
+    }
+  }
+  catch (err) {
+    console.error(err)
+    return null
   }
 }
 
@@ -235,7 +241,7 @@ const correct = async () => {
   if (isInputElement(inputEl)) {
     let oldValue = getElementText(inputEl)
     const ignoredForEl = ignoredSuggestions.get(inputEl)
-    currentSuggestions = (await spellcheckApi(oldValue))
+    currentSuggestions = await spellcheckApi(oldValue)
     if (ignoredForEl) {
       currentSuggestions = currentSuggestions.filter(val => !(val[0] + val[1] in ignoredForEl))
     }
