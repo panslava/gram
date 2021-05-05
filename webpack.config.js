@@ -6,8 +6,6 @@ const { version } = require('./package.json')
 module.exports = {
   mode: 'development',
   entry: {
-    popup: './src/js/popup.js',
-    background: './src/js/background.js',
     'in-content': './src/js/in-content.js'
   },
   output: {
