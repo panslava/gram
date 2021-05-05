@@ -1,0 +1,45 @@
+{
+    "name": "chrome-extension-template",
+    "version": "0.0.9",
+    "description": "Chrome extension boilerplate, replace all values!",
+    "main": "src/index.js",
+    "repository": "git@github.com:edrpls/chrome-extension-template.git",
+    "license": "MIT",
+    "devDependencies": {
+        "babel-cli": "^6.18.0",
+        "babel-eslint": "^7.2.3",
+        "babel-loader": "^8.2.2",
+        "babel-plugin-transform-object-rest-spread": "^6.26.0",
+        "babel-plugin-transform-react-jsx": "^6.24.1",
+        "babel-preset-env": "^1.7.0",
+        "copy-webpack-plugin": "^8.1.1",
+        "crx": "^5.0.1",
+        "crx-webpack-plugin": "^0.1.1",
+        "eslint": "^7.25.0",
+        "eslint-plugin-react": "^7.23.2",
+        "rimraf": "^3.0.2",
+        "svg-url-loader": "^7.1.1",
+        "webpack": "^5.36.2",
+        "webpack-cli": "^4.6.0"
+    },
+    "scripts": {
+        "start": "nodemon --exec yarn build",
+        "prebuild": "rimraf dist",
+        "build": "webpack"
+    },
+    "nodemonConfig": {
+        "ignore": [
+            "dist/",
+            "node_modules"
+        ],
+        "execMap": {
+            "js": "node"
+        },
+        "ext": "js html css",
+        "verbose": true
+    },
+    "dependencies": {
+        "diff": "^5.0.0",
+        "nodemon": "^2.0.7"
+    }
+}
