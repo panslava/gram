@@ -59,6 +59,8 @@ const CreateHighlightElem = (inputEl, mistakeText) => {
       const r = document.createRange()
       const startOffset = wholeText.indexOf(mistakeText)
       const endOffset = startOffset + mistakeText.length
+      inputEl.innerHTML = inputEl.innerHTML.replace(/<.*?>/g, '')
+      inputEl.innerHTML = inputEl.innerHTML.replace(/&nbsp;/g, ' ')
       r.setStart(inputEl.firstChild, startOffset)
       r.setEnd(inputEl.firstChild, endOffset)
       const rect = r.getClientRects()[0]
@@ -224,12 +226,16 @@ const drawSuggestion = (before, after, reason, inputEl) => {
 
 const getElementText = (inputEl) => {
   const tagName = inputEl.tagName.toLowerCase()
+  let text = ''
   if (tagName === 'div') {
-    return inputEl.innerHTML
+    inputEl.innerHTML = inputEl.innerHTML.replace(/<.*?>/g, '')
+    inputEl.innerHTML = inputEl.innerHTML.replace(/&nbsp;/g, ' ')
+    text = inputEl.innerHTML
   }
   else {
-    return inputEl.value
+    text = inputEl.value
   }
+  return text
 }
 
 const correct = async () => {
