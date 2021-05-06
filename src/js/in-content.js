@@ -59,8 +59,10 @@ const CreateHighlightElem = (inputEl, mistakeText) => {
       const r = document.createRange()
       const startOffset = wholeText.indexOf(mistakeText)
       const endOffset = startOffset + mistakeText.length
-      let newInnerHtml = inputEl.innerHTML.replace(/<.*?>/g, '').replace(/&nbsp;/g, ' ')
+      let newInnerHtml = inputEl.innerHTML.replace(/<.*?>/g, '')
       if (inputEl.innerHTML !== newInnerHtml) {
+        console.log(newInnerHtml)
+        console.log(inputEl.innerHTML)
         inputEl.innerHTML = newInnerHtml
       }
       r.setStart(inputEl.firstChild, startOffset)
