@@ -59,8 +59,10 @@ const CreateHighlightElem = (inputEl, mistakeText) => {
       const r = document.createRange()
       const startOffset = wholeText.indexOf(mistakeText)
       const endOffset = startOffset + mistakeText.length
-      inputEl.innerHTML = inputEl.innerHTML.replace(/<.*?>/g, '')
-      inputEl.innerHTML = inputEl.innerHTML.replace(/&nbsp;/g, ' ')
+      let newInnerHtml = inputEl.innerHTML.replace(/<.*?>/g, '').replace(/&nbsp;/g, ' ')
+      if (inputEl.innerHTML !== newInnerHtml) {
+        inputEl.innerHTML = newInnerHtml
+      }
       r.setStart(inputEl.firstChild, startOffset)
       r.setEnd(inputEl.firstChild, endOffset)
       const rect = r.getClientRects()[0]
@@ -228,9 +230,7 @@ const getElementText = (inputEl) => {
   const tagName = inputEl.tagName.toLowerCase()
   let text = ''
   if (tagName === 'div') {
-    inputEl.innerHTML = inputEl.innerHTML.replace(/<.*?>/g, '')
-    inputEl.innerHTML = inputEl.innerHTML.replace(/&nbsp;/g, ' ')
-    text = inputEl.innerHTML
+    text = inputEl.innerHTML.replace(/<.*?>/g, '').replace(/&nbsp;/g, ' ')
   }
   else {
     text = inputEl.value
