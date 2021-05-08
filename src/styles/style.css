@@ -1,0 +1,89 @@
+html {
+    width: 350px;
+    height: 350px;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-color: #dff9fb;
+}
+
+.page_title {
+    font-size: 20px;
+    color: #30336b;
+    text-align: center;
+    font-weight: bold;
+    margin: 15px 0;
+    text-transform: uppercase;
+}
+
+.page_subtitle {
+    font-size: 16px;
+    color: #30336b;
+    text-align: center;
+    font-weight: 400;
+    margin: 15px 0 10px;
+}
+
+.popup-content {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.popup-content-group {
+    display: flex;
+    align-items: center;
+}
+
+.popup-content-mistakes {
+    font-size: 16px;
+    width: calc(100% - 30px);
+    border: 2px solid #686de0;
+    border-radius: 6px;
+    margin: 5px;
+    padding: 5px;
+    color: #4834d4;
+}
+
+.popup-content-mistakes .mistake span {
+    font-weight: bold;
+}
+
+.popup-content-mistakes .mistake span:first-child {
+    color: #eb4d4b;
+}
+
+.popup-content-mistakes .mistake span:last-child {
+    color: #6ab04c;
+}
+
+.popup-btn {
+    color: #fff;
+    background-color: #686de0;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 12px;
+    outline: 0px;
+    border: 0px;
+    font-weight: 500;
+    border-radius: 5px;
+    position: relative;
+    margin: 5px;
+    display: inherit;
+}
+
+.popup-btn:hover {
+    background-color: #4834d4;
+}
+
+input {
+    font-size: 14px;
+    height: 28px;
+    padding-left: 10px;
+    outline: 0px;
+    width: calc(100% - 40px);
+    border: 2px solid #686de0;
+    border-radius: 6px;
+    margin: 5px;
+    color: #4834d4;
+    font-family: sans-serif;
+}
