@@ -1,14 +1,23 @@
 <!doctype html>
-<html style="min-height:auto" >
-    <head>
-        <title>chrome-extension-template</title>
-        <script src="popup.js"></script>
-    </head>
-    <body>
-    </body>
-    <body>
-        <div>
-            <p>Edit this template!</p>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Gram</title>
+    <link rel="stylesheet" type="text/css" href="../styles/style.css">
+    <script src="../js/popup.js"></script>
+</head>
+
+<body>
+    <div class="page_title">Gram</div>
+    <div class="page_subtitle">Введи текст для проверки</div>
+    <div class="popup-content">
+        <div class="popup-content-group">
+            <input id="popup-input" />
+            <button class="popup-btn" id="popup-btn">Проверить</button>
         </div>
-    </body>
+        <div class="popup-content-mistakes" id="popup-content-mistakes"></div>
+    </div>
+</body>
+
 </html>
