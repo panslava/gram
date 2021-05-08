@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById("popup-input").addEventListener("input", spellcheckApi, false);
+    document.getElementById("popup-input").addEventListener("input", handleButtonClick, false);
 
     function spellcheckApi(text) {
         return new Promise((resolve) => {
@@ -31,5 +31,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
             xhr.send(data)
         })
+    }
+
+    async function handleButtonClick() {
+        const text = document.getElementById("popup-input").value;
+        const mistakesBlock = document.getElementById("popup-content-mistakes");
+
+        suggestions = await spellcheckApi(text);
+
+        let mistakes = '';
+        mistakesBlock.innerHTML = '';
+        for (let i = 0; i < suggestions.length; i++) {
+            let button = document.createElement('button');
+            button.className = "mistake";
+            button.onclick = () => {
+                document.getElementById("popup-input").value = document.getElementById("popup-input").value.replace(suggestions[i][0], suggestions[i][1]);
+                handleButtonClick();
+            }
+
+            button.innerHTML = `<span>${suggestions[i][0]}</span> -> <span>${suggestions[i][1]}</span>`;
+            mistakesBlock.appendChild(button);
+        }
     }
 }, false);
