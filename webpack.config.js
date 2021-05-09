@@ -6,7 +6,8 @@ const { version } = require('./package.json')
 module.exports = {
   mode: 'development',
   entry: {
-    'in-content': './src/js/in-content.js'
+    'in-content': './src/js/in-content.js',
+    popup: './src/js/popup.js'
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -42,7 +43,8 @@ module.exports = {
       patterns: [
         { from: './manifest.json' },
         { from: './src/images' },
-        { from: './src/views' }
+        { from: './src/views' },
+        { from: './src/styles' }
       ]
     })
   ]
