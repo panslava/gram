@@ -35,12 +35,14 @@ function spellcheckApi(text) {
         let matches = JSON.parse(xhr.responseText).matches
         let result = []
         for (let i = 0; i < matches.length; i++) {
-          let correct_word = matches[i].replacements[0].value
-          let start = matches[i].offset
-          let length = matches[i].length
-          let incorrect_word = text.slice(start, start + length)
+          if (matches[i].replacements && matches[i].replacements.length > 0) {
+            let correct_word = matches[i].replacements[0].value
+            let start = matches[i].offset
+            let length = matches[i].length
+            let incorrect_word = text.slice(start, start + length)
 
-          result.push([incorrect_word, correct_word, matches[i].message])
+            result.push([incorrect_word, correct_word, matches[i].message])
+          }
         }
         return resolve(result)
       }
@@ -112,7 +114,7 @@ const CreateButtonElem = (iconSrc, inputEl, oldValue, newValue) => {
       }
     }
     else {
-      ignoredSuggestions.set(inputEl, {...ignoredSuggestions.get(inputEl), [oldValue + newValue]: true})
+      ignoredSuggestions.set(inputEl, { ...ignoredSuggestions.get(inputEl), [oldValue + newValue]: true })
     }
     drawNextSuggestion(inputEl)
   }
@@ -257,4 +259,4 @@ const correct = async () => {
   }
 }
 
-const interval = setInterval(correct, 5000)
+const interval = setInterval(correct, 1000)
